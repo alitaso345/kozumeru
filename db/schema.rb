@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150328045009) do
   end
 
   create_table "twitter_accounts", force: :cascade do |t|
-    t.integer  "uid",        null: false
+    t.string   "uid",        null: false
     t.string   "username",   null: false
     t.integer  "maid_id",    null: false
     t.datetime "created_at", null: false
