@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328042455) do
+ActiveRecord::Schema.define(version: 20150328045009) do
 
   create_table "maids", force: :cascade do |t|
     t.string   "name",       null: false
@@ -20,5 +20,15 @@ ActiveRecord::Schema.define(version: 20150328042455) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "twitter_accounts", force: :cascade do |t|
+    t.integer  "uid",        null: false
+    t.string   "username",   null: false
+    t.integer  "maid_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "twitter_accounts", ["maid_id"], name: "index_twitter_accounts_on_maid_id"
 
 end
