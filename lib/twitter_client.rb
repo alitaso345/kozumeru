@@ -22,7 +22,7 @@ class TwitterClient
     response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
   end
 
-  def get_user_info(screen_name)
-    @client.user(screen_name)
+  def get_user_uid(screen_name)
+    @client.user(screen_name).id.to_s
   end
 end
