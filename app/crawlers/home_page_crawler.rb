@@ -34,7 +34,7 @@ class HomePageCrawler
           info[:maid_number] = page.url.to_s.match(/\d{2,}/).to_s
           info[:name] = doc.xpath("//div[@id='maid-name']").text
           doc.xpath("//*[@id='maid-properties']/dl[3]/dd/a").each do |node|
-            info[:username] = node.attributes["href"].text.to_s.gsub(/https:\/\/twitter.com\//, "")
+            info[:screen_name] = node.attributes["href"].text.to_s.gsub(/https:\/\/twitter.com\//, "")
           end
           info[:floor] = doc.xpath("//*[@id='maid-properties']/dl[1]/dd/a[1]").text
           @maids_list << info
