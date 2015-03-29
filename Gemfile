@@ -10,6 +10,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
 gem 'nokogiri'
 gem 'anemone' 
+gem 'twitter', '~> 5.14.0'
 
 group :development, :test do
   gem 'byebug'
