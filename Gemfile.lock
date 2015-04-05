@@ -65,6 +65,9 @@ GEM
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hike (1.2.3)
+    hpricot (0.8.6)
+    html2slim (0.1.0)
+      hpricot
     http (0.6.4)
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
@@ -203,6 +206,7 @@ DEPENDENCIES
   anemone
   byebug
   coffee-rails (~> 4.1.0)
+  html2slim
   jbuilder (~> 2.0)
   jquery-rails
   nokogiri

@@ -1,13 +1,7 @@
 class HomePageCrawler
-  def initialize
-    @maids_list = []
-    @console = Logger.new(STDOUT)
-  end
-
-  #return Array<Hash>
-  def get_maid_lists
+  def self.get_maid_lists
+    maids_list = []
     begin
-      @console.info("Start crawl @homecafe")
       #クロールの起点となるURLを指定
       urls = [
         'http://www.cafe-athome.com/maids/free/',
@@ -37,20 +31,12 @@ class HomePageCrawler
             info[:screen_name] = node.attributes["href"].text.to_s.gsub(/https:\/\/twitter.com\//, "")
           end
           info[:floor] = doc.xpath("//*[@id='maid-properties']/dl[1]/dd/a[1]").text
-          @maids_list << info
+          maids_list << info
         end
       end 
-      @console.info("Finish crawl")
-      @maids_list
+      maids_list
     rescue => e
       p e
-    end
-  end
-
-  private
-  def print_maid_info
-    @maids_list.each do |maid|
-      puts maid
     end
   end
 end
