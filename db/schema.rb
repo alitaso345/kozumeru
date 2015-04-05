@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329144835) do
+ActiveRecord::Schema.define(version: 20150405034946) do
 
   create_table "maids", force: :cascade do |t|
     t.string   "name",       null: false
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150329144835) do
     t.string   "maidnumber", null: false
   end
 
+  add_index "maids", ["name", "maidnumber"], name: "index_maids_on_name_and_maidnumber", unique: true
+
   create_table "pictures", force: :cascade do |t|
     t.integer  "tweet_id",   null: false
     t.string   "url",        null: false
@@ -29,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150329144835) do
   end
 
   add_index "pictures", ["tweet_id"], name: "index_pictures_on_tweet_id"
+  add_index "pictures", ["url"], name: "index_pictures_on_url", unique: true
 
   create_table "tweets", force: :cascade do |t|
     t.integer  "twitter_account_id", null: false
@@ -39,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150329144835) do
     t.datetime "updated_at",         null: false
   end
 
+  add_index "tweets", ["status_id"], name: "index_tweets_on_status_id", unique: true
   add_index "tweets", ["twitter_account_id"], name: "index_tweets_on_twitter_account_id"
 
   create_table "twitter_accounts", force: :cascade do |t|
@@ -50,5 +54,6 @@ ActiveRecord::Schema.define(version: 20150329144835) do
   end
 
   add_index "twitter_accounts", ["maid_id"], name: "index_twitter_accounts_on_maid_id"
+  add_index "twitter_accounts", ["uid", "screen_name"], name: "index_twitter_accounts_on_uid_and_screen_name", unique: true
 
 end
