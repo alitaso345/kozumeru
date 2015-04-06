@@ -12,6 +12,10 @@ class TwitterClient
     @client.user_timeline(user, {since_id: user.tweets.last.status_id, count: 200})
   end
 
+  def get_seed_tweets(user)
+    @client.user_timeline(user, {count: 10})
+  end
+
   def get_all_tweets(user)
     collect_with_max_id do |max_id|
       options = {count: 200, include_rts: true}
