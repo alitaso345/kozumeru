@@ -1,5 +1,6 @@
 class Maid < ActiveRecord::Base
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :maid_number, presence: true, uniqueness: true
 
   has_one :twitter_account
 
