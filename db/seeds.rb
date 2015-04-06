@@ -1,2 +1,3 @@
 #メイドさんの情報とTwitterアカウントをDBに投入する
 Maid.import_info_from_homepage
+Tweet.import_recent_tweet
