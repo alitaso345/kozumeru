@@ -1,0 +1,16 @@
+h1 メイド一覧
+
+#content
+  table
+    thead
+      tr
+        th Name
+        th Floor
+        th Number
+
+    tbody
+      - @maids.each do |maid|
+        tr
+          td.name = maid.name
+          td.floor = maid.floor
+          td.number = maid.maidnumber
