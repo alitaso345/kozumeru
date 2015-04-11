@@ -12,8 +12,14 @@ class TwitterClient
     @client.user_timeline(user, {since_id: user.tweets.last.status_id, count: 200})
   end
 
-  def get_seed_tweets(user)
-    @client.user_timeline(user, {count: 10})
+  def get_seed_tweets
+    TwitterAccount.all.each do |account|
+      tweets = @client.user_timeline(account.screen_name, {count: 10})
+      tweets.each do |tweet|
+        Tweet.create(twitter_account_id: account.id, text: tweet.text, status_id: tweet.id, published_at: tweet.created_at)
+      end
+      sleep 5
+    end
   end
 
   def get_all_tweets(user)
