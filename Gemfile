@@ -20,6 +20,8 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails', '~> 3.0'
   gem 'html2slim'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :production do
