@@ -8,6 +8,12 @@ class Maid < ActiveRecord::Base
     self.twitter_account.tweets
   end
 
+  def pictures
+    self.twitter_account.tweets.select{|tweet| tweet.picture}.map do |tweet|
+      tweet.picture
+    end
+  end
+
   def self.import_info_from_homepage
     lists = HomePageCrawler.get_maid_lists
     client = TwitterClient.new
