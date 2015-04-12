@@ -5,7 +5,7 @@ class Tweet < ActiveRecord::Base
   validates :published_at, presence: true
 
   belongs_to :twitter_account
-  has_many :pictures
+  has_one :picture
 
   def self.import_recent_tweet
     accounts = TwitterAccount.all.select('id, screen_name')
