@@ -8,20 +8,22 @@ class Tweet < ActiveRecord::Base
   has_many :pictures
 
   def self.import_recent_tweet
-    begin
-      accounts = TwitterAccount.all.select('id, screen_name')
-      client = TwitterClient.new
+    accounts = TwitterAccount.all.select('id, screen_name')
+    client = TwitterClient.new
 
-      accounts.each do |account|
-        client.get_recent_tweets(account.screen_name).each do |tweet|
+    accounts.each do |account|
+      begin
+        client.get_recent_tweets(account).each do |tweet|
           tw = Tweet.create({twitter_account_id: account.id, text: tweet.text, status_id:  tweet.id, published_at: tweet.created_at})
+
           if has_media?(tweet)
             Picture.create({tweet_id: tw.id, url: tweet.media.first.media_url})
           end
         end
+      rescue => e
+        p e
+        p "failed import #{account.screen_name}'s tweet"
       end
-    rescue => e
-      p e
     end
   end
 
