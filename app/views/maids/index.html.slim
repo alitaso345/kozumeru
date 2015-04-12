@@ -1,7 +1,7 @@
 h1 メイド一覧
 
 #content
-  table
+  table.table.table-striped
     thead
       tr
         th Name
@@ -14,3 +14,4 @@ h1 メイド一覧
           td.name = maid.name
           td.floor = maid.floor
           td.number = maid.number
+          td = link_to '詳細', Maid.find(maid.id)
