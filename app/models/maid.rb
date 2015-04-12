@@ -4,6 +4,10 @@ class Maid < ActiveRecord::Base
 
   has_one :twitter_account
 
+  def tweets
+    self.twitter_account.tweets
+  end
+
   def self.import_info_from_homepage
     lists = HomePageCrawler.get_maid_lists
     client = TwitterClient.new
