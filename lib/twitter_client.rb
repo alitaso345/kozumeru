@@ -9,7 +9,7 @@ class TwitterClient
   end
 
   def get_recent_tweets(user)
-    @client.user_timeline(user, {since_id: user.tweets.last.status_id, count: 200})
+    @client.user_timeline(user.screen_name, {since_id: user.tweets.last.status_id.to_i, count: 200})
   end
 
   def get_seed_tweets
