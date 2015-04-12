@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.all(pramas[:maid_id])
+    maid = Maid.find(params[:maid_id])
+    @tweets = maid.tweets if maid.twitter_account
   end
 end

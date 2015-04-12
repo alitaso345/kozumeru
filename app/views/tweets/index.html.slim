@@ -1,4 +1,7 @@
 h1 ツイート一覧
 
-- @tweets.each do |tweet|
-  p tweet
+- if @tweets
+  - @tweets.each do |tweet|
+    p.tweet = tweet.text
+- else
+  p ツイッターアカウントを持っていません
