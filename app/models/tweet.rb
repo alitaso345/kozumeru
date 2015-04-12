@@ -26,7 +26,7 @@ class Tweet < ActiveRecord::Base
   end
 
   private
-  def has_media?(tweet)
+  def self.has_media?(tweet)
     (tweet.media? && tweet.media.first.media_url) ? true : false
   end
 end
