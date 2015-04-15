@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411123155) do
+ActiveRecord::Schema.define(version: 20150415135733) do
 
   create_table "maids", force: :cascade do |t|
     t.string   "name",       null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150411123155) do
     t.integer  "number",     null: false
   end
 
-  add_index "maids", ["name", "number"], name: "index_maids_on_name_and_number", unique: true
+  add_index "maids", ["number"], name: "index_maids_on_number", unique: true
 
   create_table "pictures", force: :cascade do |t|
     t.integer  "tweet_id",   null: false
