@@ -4,6 +4,15 @@ class Maid < ActiveRecord::Base
 
   has_one :twitter_account
 
+  #所属する階を示すフラグ
+  GRADUATED 0
+  NEW_COMER 1
+  PREMIUM 2
+  FOURTH_FLOOR 3
+  SIXTH_FLOOR 4
+  SEVENTH_FLOOR 5
+  DONKI 6
+
   def tweets
     self.twitter_account.tweets
   end
