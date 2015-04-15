@@ -1,3 +1,2 @@
-#メイドさんの情報とTwitterアカウントをDBに投入する
+#メイドさんの情報をDBに投入する
 Maid.import_info_from_homepage
-TwitterClient.new.get_seed_tweets
