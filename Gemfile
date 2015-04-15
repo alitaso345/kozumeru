@@ -11,7 +11,6 @@ gem 'slim-rails'
 gem 'nokogiri'
 gem 'anemone' 
 gem 'twitter', '~> 5.14.0'
-gem 'whenever', '~> 0.9.4', :require => false
 
 group :development, :test do
   gem 'byebug'
