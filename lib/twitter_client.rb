@@ -8,6 +8,28 @@ class TwitterClient
     end
   end
 
+  def get_recent_tweets(user)
+    @client.user_timeline(user.screen_name, {count: 200, exclude_replies: false, include_rts: false})
+  end
+
+  def get_seed_tweets
+    p "Start getting tweets..."
+
+    begin
+      TwitterAccount.all.each do |account|
+        tweets = @client.user_timeline(account.screen_name, {count: 10})
+        tweets.each do |tweet|
+          Tweet.create(twitter_account_id: account.id, text: tweet.text, status_id: tweet.id, published_at: tweet.created_at)
+        end
+        sleep 5
+      end
+    rescue => e
+      p e
+    end
+
+    p "Done..."
+  end
+
   def get_all_tweets(user)
     collect_with_max_id do |max_id|
       options = {count: 200, include_rts: true}

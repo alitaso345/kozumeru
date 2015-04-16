@@ -25,7 +25,7 @@ class HomePageCrawler
           doc = Nokogiri::HTML.parse(page.body)
 
           info = Hash.new
-          info[:maid_number] = page.url.to_s.match(/\d{2,}/).to_s
+          info[:number] = page.url.to_s.match(/\d{2,}/).to_s
           info[:name] = doc.xpath("//div[@id='maid-name']").text
           doc.xpath("//*[@id='maid-properties']/dl[3]/dd/a").each do |node|
             info[:screen_name] = node.attributes["href"].text.to_s.gsub(/https:\/\/twitter.com\//, "")

@@ -1,0 +1,26 @@
+h1 = @maid.name
+
+div.profile.col-xs-3
+  h4 プロフィール
+
+  div.profile-area
+    p = "ID: #{@maid.id}"
+    p = "Name: #{@maid.name}"
+    p = "Floor: #{@maid.floor}"
+    p = "Number: #{@maid.number}"
+    p = link_to('@ほぉ〜むカフェ公式', "http://www.cafe-athome.com/maids/#{@maid.number}", :target => '_blank')
+    p = link_to('Twitterアカウント', "https://twitter.com/#{@maid.twitter_account.screen_name}", :target => '_blank')
+
+div.tweet.col-xs-4
+  h4 ツイート(#{link_to('全部見る', url_for(Maid.find(@maid.id)) + '/tweets')})
+
+  div.tweets-area
+   - @tweets.each do |tweet|
+     p = tweet.text
+
+div.picture.col-xs-4
+  h4 写真(#{link_to('全部見る', url_for(Maid.find(@maid.id)) + '/pictures')})
+
+  div.pictures-area
+    - @pictures.each do |picture|
+      = image_tag(picture.url, :width => 200, :height => 'auto') 

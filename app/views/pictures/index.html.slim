@@ -1,0 +1,7 @@
+h1 画像一覧
+
+- if @pictures.any?
+  - @pictures.each do |picture|
+    = image_tag(picture.url)
+- else
+  p 画像がありません
