@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415135733) do
+ActiveRecord::Schema.define(version: 20150416133521) do
 
   create_table "maids", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",                   null: false
     t.string   "floor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "number",     null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "number",                 null: false
+    t.integer  "graduated",  default: 0, null: false
   end
 
   add_index "maids", ["number"], name: "index_maids_on_number", unique: true
