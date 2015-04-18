@@ -5,6 +5,6 @@ class Tweet < ActiveRecord::Base
   validates :published_at, presence: true
 
   belongs_to :twitter_account
-  has_many :picture
+  has_many :pictures
 
 end
