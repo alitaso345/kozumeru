@@ -5,12 +5,12 @@ class Maid < ActiveRecord::Base
   has_one :twitter_account
 
   def tweets
-    self.twitter_account.tweets
+    self.twitter_account.tweets.order('published_at DESC')
   end
 
   def pictures
     pictures = []
-    tweets = self.twitter_account.tweets
+    tweets = self.twitter_account.tweets.order('published_at DESC')
     tweets.select{|tweet| tweet.pictures}.map do |tweet|
       tweet.pictures.each{|pic| pictures << pic}
     end
