@@ -9,9 +9,13 @@ class Maid < ActiveRecord::Base
   end
 
   def pictures
-    self.twitter_account.tweets.select{|tweet| tweet.picture}.map do |tweet|
-      tweet.picture
+    pictures = []
+    tweets = self.twitter_account.tweets
+    tweets.select{|tweet| tweet.pictures}.map do |tweet|
+      tweet.pictures.each{|pic| pictures << pic}
     end
+
+    pictures
   end
 
   def self.import_info_from_homepage
