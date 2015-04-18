@@ -1,6 +1,6 @@
 class TwitterCrawler
   def self.import_recent_tweet
-    accounts = TwitterAccount.all.select('id, screen_name').limit(1)
+    accounts = TwitterAccount.all.select('id, screen_name')
     client = TwitterClient.new
 
     accounts.each do |account|
