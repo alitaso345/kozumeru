@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418035228) do
+ActiveRecord::Schema.define(version: 20150418040049) do
 
   create_table "maids", force: :cascade do |t|
     t.string   "name",       null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150418035228) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "analyzed",   default: false, null: false
+    t.integer  "kind"
   end
 
   add_index "pictures", ["tweet_id"], name: "index_pictures_on_tweet_id"
