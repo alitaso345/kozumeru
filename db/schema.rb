@@ -14,11 +14,12 @@
 ActiveRecord::Schema.define(version: 20150418124944) do
 
   create_table "maids", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name",                       null: false
     t.string   "floor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "number",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "number",                     null: false
+    t.boolean  "graduated",  default: false, null: false
   end
 
   add_index "maids", ["number"], name: "index_maids_on_number", unique: true
