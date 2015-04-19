@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416133521) do
+ActiveRecord::Schema.define(version: 20150418124944) do
 
   create_table "maids", force: :cascade do |t|
     t.string   "name",                       null: false
@@ -25,10 +25,13 @@ ActiveRecord::Schema.define(version: 20150416133521) do
   add_index "maids", ["number"], name: "index_maids_on_number", unique: true
 
   create_table "pictures", force: :cascade do |t|
-    t.integer  "tweet_id",   null: false
-    t.string   "url",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "tweet_id",                     null: false
+    t.string   "url",                          null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "analyzed",     default: false, null: false
+    t.integer  "kind"
+    t.datetime "published_at",                 null: false
   end
 
   add_index "pictures", ["tweet_id"], name: "index_pictures_on_tweet_id"
