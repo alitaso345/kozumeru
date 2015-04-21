@@ -1,6 +1,6 @@
 class TwitterCrawler
   def self.import_recent_tweet
-    accounts = TwitterAccount.all.select('id, screen_name').limit(1)
+    accounts = TwitterAccount.all.select('id, screen_name')
     client = TwitterClient.new
 
     accounts.each do |account|
@@ -10,7 +10,7 @@ class TwitterCrawler
 
           if tweet.media?
             tweet.media.select{|media| media.class == Twitter::Media::Photo}.each do |photo|
-              Picture.create({tweet_id: created_tweet.id, url: photo.media_url.to_s})
+              Picture.create({tweet_id: created_tweet.id, url: photo.media_url.to_s, published_at: tweet.created_at})
             end
           end
         end

@@ -5,13 +5,17 @@ class Maid < ActiveRecord::Base
   has_one :twitter_account
 
   def tweets
-    self.twitter_account.tweets
+    self.twitter_account.tweets.order('published_at DESC')
   end
 
   def pictures
-    self.twitter_account.tweets.select{|tweet| tweet.picture}.map do |tweet|
-      tweet.picture
+    pictures = []
+    tweets = self.twitter_account.tweets.order('published_at DESC')
+    tweets.select{|tweet| tweet.pictures}.map do |tweet|
+      tweet.pictures.each{|pic| pictures << pic}
     end
+
+    pictures
   end
 
   def self.import_info_from_homepage
