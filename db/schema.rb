@@ -41,7 +41,8 @@ ActiveRecord::Schema.define(version: 20150421233328) do
     t.integer  "maid_id",                   null: false
     t.integer  "picture_id",                null: false
     t.date     "date"
-    t.time     "time"
+    t.time     "start_time"
+    t.time     "end_time"
     t.integer  "location",      default: 0, null: false
     t.string   "miss_analyzed"
     t.datetime "created_at",                null: false
