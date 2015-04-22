@@ -4,7 +4,8 @@ class CreateServingDays < ActiveRecord::Migration
       t.references :maid, null: false, index: true
       t.references :picture, null: false, index: true
       t.date :date
-      t.time :time
+      t.time :start_time
+      t.time :end_time
       t.integer :location, default: 0, null: false
       t.string :miss_analyzed
       t.timestamps null: false
