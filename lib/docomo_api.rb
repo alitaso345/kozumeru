@@ -6,6 +6,7 @@ class DocomoAPI
     @uri = URI('https://api.apigw.smt.docomo.ne.jp/puxImageRecognition/v1/faceDetection')
     @uri.query = 'APIKEY=' + API_KEY
   end
+
   def face_judgement
     response = RestClient.post(
       @uri.to_s,
@@ -16,6 +17,6 @@ class DocomoAPI
       :content_type => 'application/x-www-form-urlencoded'
     )
     hash = JSON.parser.new(response).parse()
-    p hash["results"]["faceRecognition"]["detectionFaceNumber"]
+    @kind=1 if hash["results"]["faceRecognition"]["detectionFaceNumber"]
   end
 end
