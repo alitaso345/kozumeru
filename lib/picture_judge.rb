@@ -1,11 +1,12 @@
-# 顔認識docomoAPIで画像の中に人の顔があるか判定するスクリプト
 require 'rest_client'
 require 'json'
-
-API_KEY = ENV['DOCOMO_API_KEY']
-
+class DocomoAPI
+  def initialize
+    API_KEY = ENV['DOCOMO_API_KEY']
     @uri = URI('https://api.apigw.smt.docomo.ne.jp/puxImageRecognition/v1/faceDetection')
     @uri.query = 'APIKEY=' + API_KEY
+  end
+  def face_judgement
     response = RestClient.post(
       @uri.to_s,
       {
@@ -16,3 +17,5 @@ API_KEY = ENV['DOCOMO_API_KEY']
     )
     hash = JSON.parser.new(response).parse()
     p hash["results"]["faceRecognition"]["detectionFaceNumber"]
+  end
+end
