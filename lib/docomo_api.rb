@@ -7,11 +7,12 @@ class DocomoAPI
     @uri.query = 'APIKEY=' + API_KEY
   end
 
-  def face_judgement
+#渡された画像URLに顔が写っているかどうかを判定
+  def face_judgement(picture_url)
     response = RestClient.post(
       @uri.to_s,
       {
-        :imageURL => 'http://pbs.twimg.com/media/CDSCIvdUsAAQvxL.jpg',
+        :imageURL => picture_url,
         :response => 'json'
     },
       :content_type => 'application/x-www-form-urlencoded'
