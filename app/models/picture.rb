@@ -5,4 +5,10 @@ class Picture < ActiveRecord::Base
   belongs_to :tweet
 
   enum kind: {serve: 0, maid: 1, other: 3}
+
+  def picture_analizing
+    pic =  Picture.where(:id => id).first
+    pic.update_attribute(:analized, true)
+  end
+
 end
