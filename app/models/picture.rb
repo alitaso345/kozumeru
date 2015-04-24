@@ -6,17 +6,17 @@ class Picture < ActiveRecord::Base
 
   enum kind: {serve: 0, maid: 1, other: 3}
 
-  def picture_analyzing
+  def picture_analyzing(id)
     pic = Picture.find_by(:id => id)
+    pic.face_judging(id)
     pic.update(:analyzed => true)
+    pic.save!
   end
 
   def face_judging(id)
     api = DocomoAPI.new
-    pic = Picture.where(:id => id).first
-    #if api.face_judgiment(pic.url)
-    pic.update_attribute(:kind, 'maid')
-    #end
+    pic = Picture.find_by(:id => id)
+    pic.update(:kind => 'maid') #if api.face_judgiment(pic.url)
   end
 
 
