@@ -48,6 +48,19 @@ class HomePageCrawler
     {title: title, account_name: account_name}
   end
 
+  #arguments url<String>
+  #return <Hash>
+  #title<String>, body<String>, published_at<DateTime>, pictures<Array[String]>
+  def self.get_post_info(url)
+    post = Nokogiri::HTML(open(url))
+    title = post.xpath("//*[@id='main']/div[5]/div[@class='box-inner']").first.xpath("//h2//a").text
+    body = post.xpath("//div[@class='article blog-post-content']").children.text.gsub(/[\r\n\s]/, "")
+    published_at = Date.parse(post.xpath("//div[@class='article-date']").text.gsub(/\./, "-").match(/^.{,10}/).to_s)
+    pictures = post.xpath("//div[@class='article blog-post-content']//img").map{|node| node.attributes["src"].value}
+
+    {title: title, body: body, published_at: published_at, pictures: pictures}
+  end
+
   private
   def self.get_blog_url(doc)
     link = doc.xpath("//*[@id='maid-properties']/dl[2]/dd/a").first
