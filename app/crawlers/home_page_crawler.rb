@@ -1,4 +1,15 @@
 class HomePageCrawler
+
+  #retrun Hash
+  #title, account_name
+  def self.blog_detail(url)
+    doc = Nokogiri::HTML(open(url))
+    title = doc.xpath("//*[@id='blog-header-title']/a").text
+    account_name = url.slice("http://www.cafe-athome.com/blog/")
+
+    {title: title, account_name: account_name}
+  end
+
   def self.get_maid_lists
     maids_list = []
     begin
