@@ -66,7 +66,7 @@ class DocomoAPI
 
 
 
-  private
+  #private
   # URLから画像ファイルを取得
   def save_file(url)
     filename = File.basename(url)
