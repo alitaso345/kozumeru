@@ -8,12 +8,12 @@ class Picture < ActiveRecord::Base
   enum kind: {serve: 0, maid: 1, other: 3}
 
   def picture_analyzing
-    self.face_judging
+    self.face_analyzing
     self.update(:analyzed => true)
     self.save!
   end
 
-  def face_judging
+  def face_analyzing
     api = DocomoAPI.new
     self.update(:kind => 'maid') if api.face_judgement(self.url)
     self.save!
