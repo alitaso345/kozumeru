@@ -5,7 +5,7 @@ class HomePageCrawler
   def self.blog_detail(url)
     doc = Nokogiri::HTML(open(url))
     title = doc.xpath("//*[@id='blog-header-title']/a").text
-    account_name = url.slice("http://www.cafe-athome.com/blog/")
+    account_name = url.gsub(/^http:\/\/www.cafe-athome.com\/blog\//, "").gsub(/\/$/, "")
 
     {title: title, account_name: account_name}
   end
