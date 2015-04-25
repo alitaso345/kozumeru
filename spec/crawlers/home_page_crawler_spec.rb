@@ -23,9 +23,10 @@ describe HomePageCrawler do
       it '正しくスクレイピングできている' do
         url = 'http://www.cafe-athome.com/blog/meru/2015/04/25/3373'
         info = HomePageCrawler.get_post_info(url)
-        expect(info[:title]) == '今日のめるるんは'
-        expect(info[:body]) == "いつもとすこしだけちがうよー！ぺたりん♡'6階にてお待ちしてます！"
-        expect(info[:published_at]) == Date.new(2015, 04, 25)
+        expect(info[:title]).to eq('今日のめるるんは')
+        expect(info[:body]).to eq("いつもとすこしだけちがうよー！ぺたりん♡6階にてお待ちしてます！my")
+        expect(info[:published_at]).to eq(Date.new(2015, 04, 25))
+        expect(info[:pictures]).to eq(["http://www.cafe-athome.com/blog/meru/files/2015/04/image1_25-480x360.jpg"])
       end
     end
   end
