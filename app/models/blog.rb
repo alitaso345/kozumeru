@@ -3,4 +3,5 @@ class Blog < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
 
   belongs_to :maid
+  has_many :posts
 end
