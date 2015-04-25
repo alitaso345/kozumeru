@@ -11,7 +11,12 @@ class DocomoAPI
     save_file(picture_url)                    # その画像をjpgで保存
     filename = File.basename(picture_url)     # fileName="XXXX.jpg"
     req_ocr(filename)                     # そのままDocomoAPIでocr
-    true unless get_ocr.blank?
+    unless get_ocr.blank?
+      return true
+    else
+      File.unlink filename
+      return false
+    end
   end
 
   ###   渡された画像URLに顔が写っているかどうかを判定   ###

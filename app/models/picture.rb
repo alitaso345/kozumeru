@@ -5,7 +5,7 @@ class Picture < ActiveRecord::Base
   belongs_to :tweet
   belongs_to :post
 
-  enum kind: {other: 0, maid: 1, serve: 3}
+  enum kind: {other: 0, maid: 1, serve: 2}
 
   def picture_analyzing
     self.face_analyzing
