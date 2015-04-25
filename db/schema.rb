@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418124944) do
+ActiveRecord::Schema.define(version: 20150425010327) do
+
+  create_table "blogs", force: :cascade do |t|
+    t.integer  "maid_id",    null: false
+    t.string   "title",      null: false
+    t.string   "url",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "blogs", ["maid_id"], name: "index_blogs_on_maid_id"
+  add_index "blogs", ["url"], name: "index_blogs_on_url", unique: true
 
   create_table "maids", force: :cascade do |t|
     t.string   "name",                       null: false
