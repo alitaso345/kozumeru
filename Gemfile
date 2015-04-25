@@ -11,6 +11,8 @@ gem 'slim-rails'
 gem 'nokogiri'
 gem 'anemone' 
 gem 'twitter', '~> 5.14.0'
+gem 'rest_client'
+gem 'json'
 
 group :development, :test do
   gem 'byebug'

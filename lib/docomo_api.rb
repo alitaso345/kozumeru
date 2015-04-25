@@ -1,5 +1,3 @@
-require 'rest_client'
-require 'json'
 class DocomoAPI
   def initialize
     API_KEY = ENV['DOCOMO_API_KEY']
