@@ -9,4 +9,12 @@ describe HomePageCrawler do
       end
     end
   end
+
+  describe '#get_maid_lists' do
+    context '実行したとき' do
+      it '返り値の型がArrayであること' do
+        expect(HomePageCrawler.get_maid_lists.class) == Array
+      end
+    end
+  end
 end
