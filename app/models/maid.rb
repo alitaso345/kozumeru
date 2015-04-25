@@ -3,6 +3,7 @@ class Maid < ActiveRecord::Base
   validates :number, presence: true, uniqueness: true
 
   has_one :twitter_account
+  has_one :blog
 
   def tweets
     self.twitter_account.tweets.order('published_at DESC')
