@@ -1,8 +1,8 @@
 class DocomoAPI
   def initialize
-    API_KEY = ENV['DOCOMO_API_KEY']
+    api = Rails.application.secrets[:docomo_api_key] 
     @uri = URI('https://api.apigw.smt.docomo.ne.jp/puxImageRecognition/v1/faceDetection')
-    @uri.query = 'APIKEY=' + API_KEY
+    @uri.query = 'APIKEY=' + api
   end
 
 #渡された画像URLに顔が写っているかどうかを判定
