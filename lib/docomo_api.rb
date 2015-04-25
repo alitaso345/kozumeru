@@ -16,6 +16,6 @@ class DocomoAPI
       :content_type => 'application/x-www-form-urlencoded'
     )
     hash = JSON.parser.new(response).parse()
-    @kind=1 if hash["results"]["faceRecognition"]["detectionFaceNumber"]
+    p hash["results"]["faceRecognition"]["detectionFaceNumber"]
   end
 end
