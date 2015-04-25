@@ -27,6 +27,9 @@ class Maid < ActiveRecord::Base
         if list[:screen_name]
           TwitterAccount.create(uid: client.get_user_uid(list[:screen_name]), screen_name: list[:screen_name], maid_id: maid.id)
         end
+
+        Blog.import_info(maid, list[:blog_url])
+
       rescue => e
         p e
         p "#{list[:name]} failed import data"
