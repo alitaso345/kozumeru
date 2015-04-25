@@ -5,6 +5,32 @@ class DocomoAPI
     @uri = URI('https://api.apigw.smt.docomo.ne.jp/characterRecognition/v1/document')
   end
 
+  ###   渡された画像URLに文字が含まれているかどうかを判定   ###
+  def doc_judgement(picture_url)
+    #ocr=DocomoAPI.new
+    save_file(picture_url)                    # その画像をjpgで保存
+    filename = File.basename(picture_url)     # fileName="XXXX.jpg"
+    req_ocr(filename)                     # そのままDocomoAPIでocr
+    true unless get_ocr.blank?
+  end
+
+  ###   渡された画像URLに顔が写っているかどうかを判定   ###
+  def face_judgement(picture_url)
+    uri = URI('https://api.apigw.smt.docomo.ne.jp/puxImageRecognition/v1/faceDetection')
+    uri.query = 'APIKEY=' + @api_key
+    response = RestClient.post(
+      uri.to_s,
+      {
+        :imageURL => picture_url,
+        :response => 'json'
+    },
+      :content_type => 'application/x-www-form-urlencoded'
+    )
+    hash = JSON.parser.new(response).parse()
+    true if hash["results"]["faceRecognition"]["detectionFaceNumber"]
+  end
+
+
   ###   画像認識要求   ###
   def req_ocr(picture)
     @uri.query = 'APIKEY=' + @api_key
@@ -48,26 +74,12 @@ class DocomoAPI
   end
 
 
-  ###  渡された画像URLに顔が写っているかどうかを判定 ###
-  def face_judgement(picture_url)
-    uri = URI('https://api.apigw.smt.docomo.ne.jp/puxImageRecognition/v1/faceDetection')
-    uri.query = 'APIKEY=' + @api_key
-    response = RestClient.post(
-      uri.to_s,
-      {
-        :imageURL => picture_url,
-        :response => 'json'
-    },
-      :content_type => 'application/x-www-form-urlencoded'
-    )
-    hash = JSON.parser.new(response).parse()
-    true if hash["results"]["faceRecognition"]["detectionFaceNumber"]
-  end
 
 
 
-  #private
-  # URLから画像ファイルを取得
+private
+
+  ###   URLから画像ファイルを取得   ###
   def save_file(url)
     filename = File.basename(url)
     open(filename,'wb') do |file|
@@ -88,7 +100,7 @@ class DocomoAPI
     str.gsub(" ","")
   end
 
-  #日付の文字列(XXXX年YY月ZZ日)からdateオブジェクトを得る
+  ###   日付の文字列(XXXX年YY月ZZ日)からdateオブジェクトを得る   ###
   def jpndate(str)
     @year=@month=@day=0
     str.scan(/(\d+)(年|月|日)/) do
@@ -108,5 +120,6 @@ class DocomoAPI
       return str
     end
   end
+
 end
 
