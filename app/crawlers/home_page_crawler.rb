@@ -61,6 +61,17 @@ class HomePageCrawler
     {title: title, body: body, published_at: published_at, pictures: pictures}
   end
 
+  def self.import_posts
+    blogs = Blog.all
+    blogs.each do |blog|
+      doc = Nokogiri::HTML(open("http://www.cafe-athome.com/blog/#{blog.account_name}"))
+      get_top_post_urls(doc).each do |link|
+        info = get_post_info(link)
+        Post.create(blog_id: blog.id, url: link, title: info[:title], body: info[:body], published_at: info[:published_at])
+      end
+    end
+  end
+
   private
   def self.get_blog_url(doc)
     link = doc.xpath("//*[@id='maid-properties']/dl[2]/dd/a").first
