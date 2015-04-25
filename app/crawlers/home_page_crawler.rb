@@ -66,4 +66,8 @@ class HomePageCrawler
     link = doc.xpath("//*[@id='maid-properties']/dl[2]/dd/a").first
     link ? link.attributes["href"].value : nil
   end
+
+  def self.get_top_post_urls(doc)
+    doc.xpath("//ol[@class='sidebar-recent-posts']//a").map{|node| node.attributes["href"].value}
+  end
 end
