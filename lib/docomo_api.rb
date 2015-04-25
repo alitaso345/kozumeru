@@ -47,6 +47,7 @@ class DocomoAPI
     end
   end
 
+
   ###  渡された画像URLに顔が写っているかどうかを判定 ###
   def face_judgement(picture_url)
     uri = URI('https://api.apigw.smt.docomo.ne.jp/puxImageRecognition/v1/faceDetection')
@@ -66,6 +67,16 @@ class DocomoAPI
 
 
   private
+  # URLから画像ファイルを取得
+  def save_file(url)
+    filename = File.basename(url)
+    open(filename,'wb') do |file|
+      open(url) do |data|
+        file.write(data.read)
+      end
+    end
+  end
+
   # 文章をgrepで整形
   def pattern(str)
     str.gsub!(/[旧碑〇丨|I）}]/,
