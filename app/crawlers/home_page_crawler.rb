@@ -31,6 +31,7 @@ class HomePageCrawler
             info[:screen_name] = node.attributes["href"].text.to_s.gsub(/https:\/\/twitter.com\//, "")
           end
           info[:floor] = doc.xpath("//*[@id='maid-properties']/dl[1]/dd/a[1]").text
+          info[:blog_url] = doc.xpath("//*[@id='maid-properties']/dl[2]/dd/a").first.attributes["href"].value
           maids_list << info
         end
       end 
