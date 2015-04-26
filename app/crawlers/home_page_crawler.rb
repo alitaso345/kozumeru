@@ -56,9 +56,9 @@ class HomePageCrawler
     title = post.xpath("//*[@id='main']/div[5]/div[@class='box-inner']").first.xpath("//h2//a").text
     body = post.xpath("//div[@class='article blog-post-content']").children.text.gsub(/[\r\n\s]/, "")
     published_at = Date.parse(post.xpath("//div[@class='article-date']").text.gsub(/\./, "-").match(/^.{,10}/).to_s)
-    pictures = post.xpath("//div[@class='article blog-post-content']//img").map{|node| node.attributes["src"].value}
+    picture_urls = post.xpath("//div[@class='article blog-post-content']//img").map{|node| node.attributes["src"].value}
 
-    {title: title, body: body, published_at: published_at, pictures: pictures}
+    {title: title, body: body, published_at: published_at, picture_urls: picture_urls}
   end
 
   def self.import_posts
@@ -68,7 +68,9 @@ class HomePageCrawler
       get_top_post_urls(doc).each do |link|
         info = get_post_info(link)
         post = Post.create(blog_id: blog.id, url: link, title: info[:title], body: info[:body], published_at: info[:published_at])
-        Picture.create(post_id: post.id, url: link, analyzed: false, published_at: info[:published_at])
+        info[:picture_urls].each do |url|
+          Picture.create!(post_id: post.id, url: url, analyzed: false, published_at: info[:published_at])
+        end
       end
     end
   end
