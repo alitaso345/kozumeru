@@ -7,7 +7,7 @@ class Picture < ActiveRecord::Base
 
   enum kind: {serve: 0, maid: 1, other: 3}
 
-  def picture_analyzing
+  def analyze
     self.face_analyzing
     self.update(:analyzed => true)
     self.save!
