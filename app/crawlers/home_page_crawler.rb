@@ -67,7 +67,8 @@ class HomePageCrawler
       doc = Nokogiri::HTML(open("http://www.cafe-athome.com/blog/#{blog.account_name}"))
       get_top_post_urls(doc).each do |link|
         info = get_post_info(link)
-        Post.create(blog_id: blog.id, url: link, title: info[:title], body: info[:body], published_at: info[:published_at])
+        post = Post.create(blog_id: blog.id, url: link, title: info[:title], body: info[:body], published_at: info[:published_at])
+        Picture.create(post_id: post.id, url: link, analyzed: false, published_at: info[:published_at])
       end
     end
   end
