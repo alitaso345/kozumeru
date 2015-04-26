@@ -48,6 +48,20 @@ ActiveRecord::Schema.define(version: 20150425012959) do
   add_index "pictures", ["tweet_id"], name: "index_pictures_on_tweet_id"
   add_index "pictures", ["url"], name: "index_pictures_on_url", unique: true
 
+  create_table "serving_days", force: :cascade do |t|
+    t.integer  "maid_id",                null: false
+    t.integer  "picture_id",             null: false
+    t.date     "date",                   null: false
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "location",   default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "serving_days", ["maid_id"], name: "index_serving_days_on_maid_id"
+  add_index "serving_days", ["picture_id"], name: "index_serving_days_on_picture_id"
+
   create_table "posts", force: :cascade do |t|
     t.integer  "blog_id",      null: false
     t.string   "url",          null: false
