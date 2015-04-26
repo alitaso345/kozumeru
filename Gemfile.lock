@@ -224,7 +224,7 @@ PLATFORMS
 
 DEPENDENCIES
   anemone
-  byebug
+  byebug (~> 4.0.4)
   coffee-rails (~> 4.1.0)
   html2slim
   jbuilder (~> 2.0)
