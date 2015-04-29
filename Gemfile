@@ -17,7 +17,6 @@ gem 'mysql2'
 
 group :development, :test do
   gem 'byebug', '~> 4.0.4'
-  gem 'sqlite3'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails', '~> 3.0'
@@ -27,6 +26,5 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
