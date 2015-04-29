@@ -1,6 +1,10 @@
 class PicturesController < ApplicationController
   def index
-    maid = Maid.find(params[:maid_id])
-    @pictures = maid.pictures
+    if params[:maid_id]
+      maid = Maid.find(params[:maid_id])
+      @pictures = maid.pictures
+    else
+      @pictures = Picture.all
+    end
   end
 end
