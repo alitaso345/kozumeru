@@ -6,7 +6,7 @@ class TwitterCrawler
     accounts.each do |account|
       begin
         client.get_recent_tweets(account).each do |tweet|
-          created_tweet = Tweet.create({twitter_account_id: account.id, text: tweet.text, status_id:  tweet.id, published_at: tweet.created_at})
+          created_tweet = Tweet.create({twitter_account_id: account.id, text: Rumoji.encode(tweet.text), status_id:  tweet.id, published_at: tweet.created_at})
 
           if tweet.media?
             tweet.media.select{|media| media.class == Twitter::Media::Photo}.each do |photo|
