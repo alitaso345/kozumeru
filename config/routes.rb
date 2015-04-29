@@ -4,4 +4,6 @@ Rails.application.routes.draw do
     resources :tweets, :only => ['index']
     resources :pictures, :only => ['index']
   end
+
+  resources :pictures, :only => ['index']
 end
