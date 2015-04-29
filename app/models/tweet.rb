@@ -7,6 +7,10 @@ class Tweet < ActiveRecord::Base
   belongs_to :twitter_account
   has_many :pictures
 
+  def text=(text)
+    write_attribute(:text, Rumoji.encode(text))
+  end
+
   def text
     text = read_attribute(:text)
     Rumoji.decode(text) if text.present?
