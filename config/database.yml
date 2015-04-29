@@ -12,18 +12,19 @@ default: &default
 
 development:
   <<: *default
-  database: kozumeru_development
-  username: kozumeru_development
-  password: kozumeru_development
+  database: kozumeru_dev
+  username: kozumeru_dev
+  password: kozumeru_dev
 
 test:
   <<: *default
   database: kozumeru_test
-  username: kozumeru_development
-  password: kozumeru_development
+  username: kozumeru_dev
+  password: kozumeru_dev
 
 production:
   <<: *default
-  database: kozumeru_production
-  username: kozumeru_production
+  database: kozumeru_pro
+  username: kozumeru_pro
   password: <%= ENV['KOZUMERU_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
