@@ -15,17 +15,17 @@ class TwitterClient
   def get_seed_tweets
     p "Start getting tweets..."
 
-    begin
-      TwitterAccount.all.each do |account|
+    TwitterAccount.all.each do |account|
+      begin
         tweets = @client.user_timeline(account.screen_name, {count: 1})
         tweets.each do |tweet|
           Tweet.create(twitter_account_id: account.id, text: tweet.text, status_id: tweet.id, published_at: tweet.created_at)
         end
+      rescue => e
+        p account
+        p e
       end
-    rescue => e
-      p e
     end
-
     p "Done..."
   end
 
