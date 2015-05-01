@@ -1,11 +1,14 @@
 class TwitterCrawler
-  def self.import_recent_tweet
+  def initialize
+    @client = TwitterClient.new
+  end
+
+  def import_recent_tweet
     accounts = TwitterAccount.all.select('id, screen_name')
-    client = TwitterClient.new
 
     accounts.each do |account|
-      begin
-        client.get_recent_tweets(account).each do |tweet|
+      @client.get_recent_tweets(account).each do |tweet|
+        begin
           created_tweet = Tweet.create({twitter_account_id: account.id, text: tweet.text, status_id:  tweet.id, published_at: tweet.created_at})
 
           if tweet.media?
@@ -13,10 +16,10 @@ class TwitterCrawler
               Picture.create({tweet_id: created_tweet.id, url: photo.media_url.to_s, published_at: tweet.created_at})
             end
           end
+        rescue => e
+          p e
+          p "failed import #{account.screen_name}'s tweet"
         end
-      rescue => e
-        p e
-        p "failed import #{account.screen_name}'s tweet"
       end
     end
   end
