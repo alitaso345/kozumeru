@@ -25,7 +25,7 @@ class Maid < ActiveRecord::Base
       begin
         maid = Maid.create(name: list[:name], floor: list[:floor], number: list[:number])
         if list[:screen_name]
-          TwitterAccount.create(uid: client.get_user_uid(list[:screen_name]), screen_name: list[:screen_name], maid_id: maid.id)
+          TwitterAccount.create(uid: client.user_uid(list[:screen_name]), screen_name: list[:screen_name], maid_id: maid.id)
         end
       rescue => e
         p e
