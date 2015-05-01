@@ -1,4 +1,7 @@
 class HomePageCrawler
+  def initialize
+  end
+
   def self.get_maid_lists
     maids_list = []
     begin
@@ -38,5 +41,9 @@ class HomePageCrawler
     rescue => e
       p e
     end
+  end
+
+  def premiun_maid
+
   end
 end

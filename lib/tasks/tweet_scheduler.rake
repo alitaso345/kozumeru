@@ -4,3 +4,8 @@ task :import_recent_tweets => :environment do
   TwitterCrawler.import_recent_tweet
   puts "done."
 end
+
+task :premiun_maid_serve_info => :environment do
+  crawler = HomePageCrawler.new
+  crawler.premiun_maid
+end
