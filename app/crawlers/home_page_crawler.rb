@@ -55,7 +55,6 @@ class HomePageCrawler
     #end
   end
 
-  private
   #return Array[Hash]
   #Hash:name<String>, date<Date>, start_time<Time>, end_time<Time>, location<String>
   def scraping_premium(doc)
@@ -66,6 +65,7 @@ class HomePageCrawler
         info[:name] = box.xpath("//div[@class='maid-name']")[i].text
 
         service_time_text = box.xpath("//div[@class='service-time']")[i].text.strip
+        info[:date] = Date.now
         info[:start_time ] = get_start_time(service_time_text)
         info[:end_time ] = get_end_time(service_time_text)
         info[:location ] = get_location(service_time_text)
