@@ -17,11 +17,10 @@ class TwitterClient
 
     begin
       TwitterAccount.all.each do |account|
-        tweets = @client.user_timeline(account.screen_name, {count: 10})
+        tweets = @client.user_timeline(account.screen_name, {count: 1})
         tweets.each do |tweet|
           Tweet.create(twitter_account_id: account.id, text: tweet.text, status_id: tweet.id, published_at: tweet.created_at)
         end
-        sleep 5
       end
     rescue => e
       p e
