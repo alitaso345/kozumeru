@@ -7,5 +7,5 @@ end
 
 task :premiun_maid_serve_info => :environment do
   crawler = HomePageCrawler.new
-  crawler.premiun_maid
+  crawler.premium_maid
 end
