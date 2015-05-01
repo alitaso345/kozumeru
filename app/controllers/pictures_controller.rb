@@ -4,7 +4,7 @@ class PicturesController < ApplicationController
       maid = Maid.find(params[:maid_id])
       @pictures = maid.pictures
     else
-      @pictures = Picture.all
+      @pictures = Picture.page(params[:page]).per(10)
     end
   end
 end

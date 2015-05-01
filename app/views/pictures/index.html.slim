@@ -1,7 +1,11 @@
 h1 画像一覧
 
 - if @pictures.any?
+  = page_entries_info @pictures
+
   - @pictures.each do |picture|
     = image_tag(picture.url)
+
+  = paginate @pictures
 - else
   p 画像がありません
