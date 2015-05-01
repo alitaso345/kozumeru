@@ -54,4 +54,27 @@ class HomePageCrawler
     #  ServingDays.create(maid_id: maid.id, date: info[:date], start_time: info[:start_time], end_time: info[:end_time], location: info[:location])
     #end
   end
+
+  private
+  #return Array[Hash]
+  #Hash:name<String>, date<Date>, start_time<Time>, end_time<Time>, location<String>
+  def scraping_premium(doc)
+    list = []
+    begin
+      doc.xpath("//div[@class='top-service-info-box']").each_with_index do |box, i|
+        info = {}
+        info[:name] = box.xpath("//div[@class='maid-name']")[i].text
+
+        service_time_text = box.xpath("//div[@class='service-time']")[i].text.strip
+        info[:start_time ] = get_start_time(service_time_text)
+        info[:end_time ] = get_end_time(service_time_text)
+        info[:location ] = get_location(service_time_text)
+
+        list << info
+      end
+    rescue => e
+      p e
+    end
+    p list
+  end
 end
