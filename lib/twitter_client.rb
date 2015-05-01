@@ -6,10 +6,23 @@ class TwitterClient
       config.access_token        = Rails.application.secrets[:twitter_api_access_token]
       config.access_token_secret = Rails.application.secrets[:twitter_api_access_token_secret]
     end
+
+    @default_options = {exclude_replies: true, include_rts: false}
   end
 
   def get_recent_tweets(user)
-    @client.user_timeline(user.screen_name, {count: 200, exclude_replies: false, include_rts: false})
+    options = @default_options
+    if user.tweets.last
+      options[:since_id] = user.tweets.last.id.to_i
+    else
+      options[:count] = 1
+    end
+
+    begin
+      @client.user_timeline(user.screen_name, options)
+    rescue => e
+      p e
+    end
   end
 
   def get_seed_tweets
