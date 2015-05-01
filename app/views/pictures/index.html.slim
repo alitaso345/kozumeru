@@ -1,6 +1,10 @@
 h1 画像一覧
 
 - if @pictures.any?
+  = link_to 'お給仕画像', :controller => 'pictures', :kind => 0
+  = link_to 'メイドさん画像', :controller => 'pictures', :kind => 1
+  = link_to 'その他', :controller => 'pictures', :kind => 2
+
   = page_entries_info @pictures
 
   - @pictures.each do |picture|
