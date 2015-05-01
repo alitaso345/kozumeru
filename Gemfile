@@ -14,6 +14,7 @@ gem 'twitter', '~> 5.14.0'
 gem 'rest_client'
 gem 'json'
 gem 'mysql2'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', '~> 4.0.4'
