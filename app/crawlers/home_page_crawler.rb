@@ -77,4 +77,15 @@ class HomePageCrawler
     end
     p list
   end
+
+  def get_start_time(text)
+
+  end
+
+  def get_end_time(text)
+
+  end
+
+  def get_location(text)
+  end
 end
