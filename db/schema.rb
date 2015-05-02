@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425012959) do
+ActiveRecord::Schema.define(version: 20150502045803) do
 
   create_table "blogs", force: :cascade do |t|
     t.integer  "maid_id",      limit: 4,   null: false
@@ -63,13 +63,13 @@ ActiveRecord::Schema.define(version: 20150425012959) do
 
   create_table "serving_days", force: :cascade do |t|
     t.integer  "maid_id",    limit: 4,             null: false
-    t.integer  "picture_id", limit: 4,             null: false
     t.date     "date",                             null: false
     t.time     "start_time"
     t.time     "end_time"
     t.integer  "location",   limit: 4, default: 0, null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.integer  "picture_id", limit: 4
   end
 
   add_index "serving_days", ["maid_id"], name: "index_serving_days_on_maid_id", using: :btree
