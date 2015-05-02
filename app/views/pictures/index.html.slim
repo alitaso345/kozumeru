@@ -1,9 +1,9 @@
 h1 = link_to '画像一覧', pictures_path
 
 - if @pictures.any?
-  = link_to 'お給仕画像', :controller => 'pictures', :kind => 0
-  = link_to 'メイドさん画像', :controller => 'pictures', :kind => 1
-  = link_to 'その他', :controller => 'pictures', :kind => 2
+  = link_to 'お給仕画像', :controller => 'pictures', :kind => 'serve'
+  = link_to 'メイドさん画像', :controller => 'pictures', :kind => 'maid'
+  = link_to 'その他', :controller => 'pictures', :kind => 'other'
 
   = page_entries_info @pictures
 
