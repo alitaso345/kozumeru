@@ -3,6 +3,7 @@ class Maid < ActiveRecord::Base
   validates :number, presence: true, uniqueness: true
 
   has_one :twitter_account
+  has_one :blog
 
   def tweets
     self.twitter_account.tweets.order('published_at DESC')
@@ -27,6 +28,9 @@ class Maid < ActiveRecord::Base
         if list[:screen_name]
           TwitterAccount.create(uid: client.user_uid(list[:screen_name]), screen_name: list[:screen_name], maid_id: maid.id)
         end
+
+        Blog.import_info(maid, list[:blog_url])
+
       rescue => e
         p e
         p "#{list[:name]} failed import data"

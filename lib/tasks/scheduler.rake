@@ -5,3 +5,9 @@ task :import_recent_tweets => :environment do
   crawler.import_recent_tweet
   puts "done."
 end
+
+task :import_posts => :environment do
+  puts "Getting blog posts..."
+  HomePageCrawler.import_posts
+  puts "done..."
+end
