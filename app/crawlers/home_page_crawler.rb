@@ -79,7 +79,17 @@ class HomePageCrawler
   end
 
   def get_start_time(text)
+    text.match(/\//)
+    month = $`
 
+    $'.match(/【/)
+    day = $`
+
+    $'.match(/】/)
+    $'.match(/～/)
+    hour = $`
+
+    Time.new(DateTime.now.year, month, day, hour)
   end
 
   def get_end_time(text)
