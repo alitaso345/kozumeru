@@ -15,6 +15,7 @@ gem 'rest_client'
 gem 'json'
 gem 'mysql2'
 gem 'kaminari'
+gem 'rumoji'
 
 group :development, :test do
   gem 'byebug', '~> 4.0.4'

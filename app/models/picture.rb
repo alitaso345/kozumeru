@@ -1,5 +1,4 @@
 class Picture < ActiveRecord::Base
-  validates :tweet_id, presence: true
   validates :url, presence: true, uniqueness: true
 
   belongs_to :tweet
@@ -18,6 +17,4 @@ class Picture < ActiveRecord::Base
     self.update(:kind => 'maid') if api.face_judgement(self.url)
     self.save!
   end
-
-
 end
