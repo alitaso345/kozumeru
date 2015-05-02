@@ -64,6 +64,8 @@ class HomePageCrawler
 
         text = box.xpath("//div[@class='service-time']")[i].text.strip
 
+        next if text.blank?
+
         time = service_time(text)
 
         info[:date] = Date.new(Time.now.year, Time.now.month, Time.now.day)
