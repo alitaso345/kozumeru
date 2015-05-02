@@ -107,5 +107,9 @@ class HomePageCrawler
   end
 
   def get_location(text)
+    text.match(/\//)
+    $'.match(/【/)
+    $'.match(/】/)
+    $`
   end
 end
