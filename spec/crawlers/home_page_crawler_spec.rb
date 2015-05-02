@@ -27,7 +27,7 @@ describe HomePageCrawler do
       it 'sixth_floor であること' do
         crawler = HomePageCrawler.new
         text = "5/1【本店6階】15:00～22:00の"
-        expect(crawler.get_location(text)).to eq("sixth_floor")
+        expect(crawler.get_location(text)).to eq("本店6階")
       end
     end
   end
