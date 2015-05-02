@@ -8,14 +8,15 @@ class Maid < ActiveRecord::Base
     self.twitter_account.tweets.order('published_at DESC')
   end
 
-  def pictures
+  def pictures(params)
     ids = []
     tweets = self.twitter_account.tweets.order('published_at DESC')
     tweets.select{|tweet| tweet.pictures}.map do |tweet|
       tweet.pictures.each{|pic| ids << pic.id}
     end
-
-    Picture.where(id: ids)
+ 
+    options = params.merge({id: ids})
+    Picture.where(options)
   end
 
   def self.import_info_from_homepage
