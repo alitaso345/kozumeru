@@ -5,7 +5,7 @@ task :import_recent_tweets => :environment do
   puts "done."
 end
 
-task :premiun_maid_serve_info => :environment do
+task :premium_maid_serve_info => :environment do
   crawler = HomePageCrawler.new
   crawler.premium_maid
 end
