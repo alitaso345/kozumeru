@@ -45,10 +45,10 @@ class HomePageCrawler
 
   #スクレイピングしてきた情報を保存する
   def premium_maid
-    #scraping_premium.each do |info|
-    #  maid = Maid.find_by(name: info[:name])
-    #  ServingDays.create(maid_id: maid.id, date: info[:date], start_time: info[:start_time], end_time: info[:end_time], location: info[:location])
-    #end
+    scraping_premium.each do |info|
+      maid = Maid.find_by(name: info[:name])
+      ServingDay.create(maid_id: maid.id, date: info[:date], start_time: info[:start_time], end_time: info[:end_time], location: info[:location])
+    end
   end
 
   #return Array[Hash]
