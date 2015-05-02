@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425012959) do
+ActiveRecord::Schema.define(version: 20150426125200) do
 
   create_table "blogs", force: :cascade do |t|
     t.integer  "maid_id",      limit: 4,   null: false
@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 20150425012959) do
   add_index "maids", ["number"], name: "index_maids_on_number", unique: true, using: :btree
 
   create_table "pictures", force: :cascade do |t|
-    t.integer  "tweet_id",     limit: 4,                   null: false
+    t.integer  "tweet_id",     limit: 4
+    t.integer  "post_id",      limit: 4
     t.string   "url",          limit: 255,                 null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150425012959) do
   end
 
   add_index "pictures", ["tweet_id"], name: "index_pictures_on_tweet_id", using: :btree
+  add_index "pictures", ["post_id"], name: "index_pictures_on_post_id", using: :btree
   add_index "pictures", ["url"], name: "index_pictures_on_url", unique: true, using: :btree
 
   create_table "posts", force: :cascade do |t|
