@@ -43,13 +43,9 @@ class HomePageCrawler
     end
   end
 
+  #スクレイピングしてきた情報を保存する
   def premium_maid
-    doc = Nokogiri::HTML(open("http://www.cafe-athome.com/"))
-    #情報をWebページからスクレイピング
-    premium_maid_list = scraping_premium(doc)
-
-    #取ってきた情報を保存する
-    #premium_maid_list.each do |info|
+    #scraping_premium.each do |info|
     #  maid = Maid.find_by(name: info[:name])
     #  ServingDays.create(maid_id: maid.id, date: info[:date], start_time: info[:start_time], end_time: info[:end_time], location: info[:location])
     #end
@@ -57,8 +53,10 @@ class HomePageCrawler
 
   #return Array[Hash]
   #Hash:name<String>, date<Date>, start_time<Time>, end_time<Time>, location<String>
-  def scraping_premium(doc)
+  def scraping_premium
+    doc = Nokogiri::HTML(open("http://www.cafe-athome.com/"))
     list = []
+
     begin
       doc.xpath("//div[@class='top-service-info-box']").each_with_index do |box, i|
         info = {}
