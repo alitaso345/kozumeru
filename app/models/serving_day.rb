@@ -7,4 +7,9 @@ class ServingDay < ActiveRecord::Base
   belongs_to :pictures
 
   enum location: {undecided: 0, fourth_floor: 4, fifth_floor: 5, sixth_floor: 6, seventh_floor: 7, donki_floor: 10}
+
+
+  def location=(text)
+    write_attribute(:location, which_location(text))
+  end
 end
