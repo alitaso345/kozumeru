@@ -78,7 +78,7 @@ class HomePageCrawler
     p list
   end
 
-  def get_start_time(text)
+  def service_time(text)
     text.match(/\//)
     month = $`
 
@@ -87,23 +87,11 @@ class HomePageCrawler
 
     $'.match(/】/)
     $'.match(/～/)
-    hour = $`
 
-    Time.new(DateTime.now.year, month, day, hour)
-  end
+    start_time = Time.new(DateTime.now.year, month, day, $`)
+    end_time = Time.new(DateTime.now.year, month, day, $')
 
-  def get_end_time(text)
-    text.match(/\//)
-    month = $`
-
-    $'.match(/【/)
-    day = $`
-
-    $'.match(/】/)
-    $'.match(/～/)
-    hour = $'
-
-    Time.new(DateTime.now.year, month, day, hour)
+    {start: start_time, end: end_time}
   end
 
   def get_location(text)
