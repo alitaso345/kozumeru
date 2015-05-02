@@ -62,12 +62,14 @@ class HomePageCrawler
         info = {}
         info[:name] = box.xpath("//div[@class='maid-name']")[i].text
 
-        time = service_time(box.xpath("//div[@class='service-time']")[i].text.strip)
+        text = box.xpath("//div[@class='service-time']")[i].text.strip
 
-        info[:date] = Date.now
+        time = service_time(text)
+
+        info[:date] = Date.new(Time.now.year, Time.now.month, Time.now.day)
         info[:start_time ] = time[:start]
         info[:end_time ] = time[:end]
-        info[:location ] = get_location(service_time_text)
+        info[:location ] = get_location(text)
 
         list << info
       end
