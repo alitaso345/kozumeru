@@ -47,7 +47,7 @@ class HomePageCrawler
   def premium_maid
     scraping_premium.each do |info|
       maid = Maid.find_by(name: info[:name])
-      ServingDay.create(maid_id: maid.id, date: info[:date], start_time: info[:start_time], end_time: info[:end_time], location: info[:location])
+      ServingDay.create!(maid_id: maid.id, date: info[:date], start_time: info[:start_time], end_time: info[:end_time], location: info[:location])
     end
   end
 
