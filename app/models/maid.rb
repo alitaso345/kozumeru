@@ -9,13 +9,13 @@ class Maid < ActiveRecord::Base
   end
 
   def pictures
-    pictures = []
+    ids = []
     tweets = self.twitter_account.tweets.order('published_at DESC')
     tweets.select{|tweet| tweet.pictures}.map do |tweet|
-      tweet.pictures.each{|pic| pictures << pic}
+      tweet.pictures.each{|pic| ids << pic.id}
     end
 
-    pictures
+    Picture.where(id: ids)
   end
 
   def self.import_info_from_homepage
