@@ -1,11 +1,14 @@
 class TwitterCrawler
-  def self.import_recent_tweet
+  def initialize
+    @client = TwitterClient.new
+  end
+
+  def import_recent_tweet
     accounts = TwitterAccount.all.select('id, screen_name')
-    client = TwitterClient.new
 
     accounts.each do |account|
       begin
-        client.get_recent_tweets(account).each do |tweet|
+        @client.get_recent_tweets(account).each do |tweet|
           created_tweet = Tweet.create({twitter_account_id: account.id, text: tweet.text, status_id:  tweet.id, published_at: tweet.created_at})
 
           if tweet.media?
