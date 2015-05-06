@@ -56,7 +56,7 @@ class HomePageCrawler
     title = post.xpath("//*[@id='main']/div[5]/div[@class='box-inner']").first.xpath("//h2//a").text
     body = post.xpath("//div[@class='article blog-post-content']").children.text.gsub(/[\r\n\s]/, "")
     published_at = Date.parse(post.xpath("//div[@class='article-date']").text.gsub(/\./, "-").match(/^.{,10}/).to_s)
-    picture_urls = post.xpath("//div[@class='article blog-post-content']//img").map{|node| node.attributes["src"].value}.select{|url| !url.match(/\.gif/)}
+    picture_urls = post.xpath("//div[@class='article blog-post-content']//img").map{|node| node.attributes["src"].value}.select{|url| url.match(/\.jpg/)}
 
     {title: title, body: body, published_at: published_at, picture_urls: picture_urls}
   end
