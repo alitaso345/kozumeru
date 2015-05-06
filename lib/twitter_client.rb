@@ -13,7 +13,7 @@ class TwitterClient
   def get_recent_tweets(user)
     options = @default_options
     if user.tweets.last
-      options[:since_id] = user.tweets.last.id.to_i
+      options[:since_id] = user.tweets.last.status_id.to_i
     else
       options[:count] = 1
     end
